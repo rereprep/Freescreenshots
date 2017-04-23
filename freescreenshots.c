@@ -44,9 +44,6 @@ int hook_sysmodule_load(uint16_t id) {
                         0xF26FC97D,               // NID specifying SceScreenShot
                         0x50AE9FF9,               // NID specifying sceScreenShotDisable
                         hook_ss_disable);    
-        break;
-     
-   
     }
   }
   return ret;

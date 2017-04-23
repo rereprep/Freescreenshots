@@ -10,6 +10,8 @@ static SceUID ss_overlay_uid;
 static tai_hook_ref_t ss_disable_hook;
 static SceUID ss_disable_uid;
 
+void _start() __attribute__ ((weak, alias ("module_start")));
+
 // hook to never disable screenshots
 int hook_ss_disable(void) {
   TAI_CONTINUE(int, ss_disable_hook); // so others get a chance to hook
@@ -58,10 +60,10 @@ int hook_sysmodule_unload(uint16_t id) {
           taiHookRelease(ss_overlay_uid, ss_overlay_hook);
           ss_overlay_uid = -1;
         }
-	if (ss_disable_uid >= 0) {
+		 if (ss_disable_uid >= 0) {
           taiHookRelease(ss_disable_uid, ss_disable_hook);
           ss_disable_uid = -1;
-	} 
+		} 
     }
   }
   return ret;

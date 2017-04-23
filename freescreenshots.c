@@ -3,8 +3,6 @@
 #include <psp2/screenshot.h>
 #include <taihen.h>
 
-static tai_hook_ref_t load_internal_hook;
-static tai_hook_ref_t unload_internal_hook;
 static tai_hook_ref_t load_hook;
 static tai_hook_ref_t unload_hook;
 static tai_hook_ref_t ss_overlay_hook;
@@ -60,10 +58,10 @@ int hook_sysmodule_unload(uint16_t id) {
           taiHookRelease(ss_overlay_uid, ss_overlay_hook);
           ss_overlay_uid = -1;
         }
-		 if (ss_disable_uid >= 0) {
+	if (ss_disable_uid >= 0) {
           taiHookRelease(ss_disable_uid, ss_disable_hook);
           ss_disable_uid = -1;
-		} 
+	} 
     }
   }
   return ret;

@@ -38,7 +38,7 @@ int hook_sysmodule_load(uint16_t id) {
                         0xF26FC97D,               // NID specifying SceScreenShot
                         0x7061665B,               // NID specifying sceScreenShotSetOverlayImage
                         hook_ss_overlay);         // Name of the hook function
-		ss_disable_uid = 
+	ss_disable_uid = 
           taiHookFunctionExport(&ss_disable_hook, // Output a reference
                         "SceScreenShot",          // Name of module being hooked
                         0xF26FC97D,               // NID specifying SceScreenShot
@@ -50,7 +50,7 @@ int hook_sysmodule_load(uint16_t id) {
 }
 
 // hook unload module
-int hook_sysmodule_unload(uint16_t id) {
+  int hook_sysmodule_unload(uint16_t id) {
   int ret;
   ret = TAI_CONTINUE(int, unload_hook, id);
   if (ret >= 0) { // unload successful
@@ -60,10 +60,10 @@ int hook_sysmodule_unload(uint16_t id) {
           taiHookRelease(ss_overlay_uid, ss_overlay_hook);
           ss_overlay_uid = -1;
         }
-		 if (ss_disable_uid >= 0) {
+	if (ss_disable_uid >= 0) {
           taiHookRelease(ss_disable_uid, ss_disable_hook);
           ss_disable_uid = -1;
-		} 
+	} 
     }
   }
   return ret;
